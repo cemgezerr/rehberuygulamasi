@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css"
+        integrity="sha512-EZLkOqwILORob+p0BXZc+Vm3RgJBOe1Iq/0fiI7r/wJgzOFZMlsqTa29UEl6v6U6gsV4uIpsNZoV32YZqrCRCQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+
+
+    <div class="container">
+
+        <h1>Rehber Uygulaması</h1>
+
+        <div class="bilgi bilgi--success">Başarılı</div>
+        <div class="bilgi bilgi--error">Hata Çıktı</div>
+
+        <form id="form-rehber" action="">
+            <div>
+                <label for="ad">Adı</label>
+                <input type="text" id="ad" class="u-full-width">
+            </div>
+            <div>
+                <label for="soyad">Soyad</label>
+                <input type="text" id="soyad" class="u-full-width">
+            </div>
+            <div>
+                <label for="email">E-Mail</label>
+                <input type="text" id="email" class="u-full-width">
+            </div>
+            <div>
+                <input class="button-primary u-full-width" type="submit" value="submit">
+            </div>
+        </form>
+
+        <hr>
+        <table class="u-full-width">
+            <thead>
+                <tr>
+                    <th>Ad</th>
+                    <th>Soyad</th>
+                    <th>E-Mail</th>
+                    <th>İşlemler</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Cem</td>
+                    <td>Gezer</td>
+                    <td>ee@eee.com</td>
+                    <td>
+                        <button class="btn btn--edit"> <i class="fa fa-edit" aria-hidden="true"></i></button>
+                        <button class="btn btn--delete"> <i class="fa fa-trash" aria-hidden="true"></i></button>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>Cem</td>
+                    <td>Gezer</td>
+                    <td>ee@eee.com</td>
+                    <td>
+                        <button class="btn btn--edit"> <i class="fa fa-edit" aria-hidden="true"></i></button>
+                        <button class="btn btn--delete"> <i class="fa fa-trash" aria-hidden="true"></i></button>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>Cem</td>
+                    <td>Gezer</td>
+                    <td>ee@eee.com</td>
+                    <td>
+                        <button class="btn btn--edit"> <i class="fa fa-edit" aria-hidden="true"></i></button>
+                        <button class="btn btn--delete"> <i class="fa fa-trash" aria-hidden="true"></i></button>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>Cem</td>
+                    <td>Gezer</td>
+                    <td>ee@eee.com</td>
+                    <td>
+                        <button class="btn btn--edit"> <i class="fa fa-edit" aria-hidden="true"></i></button>
+                        <button class="btn btn--delete"> <i class="fa fa-trash" aria-hidden="true"></i></button>
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+
+    <script src="app.js"></script>
+</body>
+
+</html>
