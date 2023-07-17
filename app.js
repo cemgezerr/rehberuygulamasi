@@ -12,18 +12,29 @@ form.addEventListener('submit', kaydet)
 kisiListesi.addEventListener('click', kisiIslemleriniYap)
 
 const tumKisilerDizisi = [];
+let secilenSatir = undefined;
 
 function kisiIslemleriniYap(event) {
 
     if (event.target.classList.contains('btn--delete')) {
-        const silinicekTr = rehberdenSil(event.target.parentElement.parentElement);
+        const silinicekTr = kisiSil(event.target.parentElement.parentElement);
         const silinecekMail = event.target.parentElement.previousElementSibling.textContent;
-        rehberdenSil(silinicekTr,silinecekMail)
-    } else if(e.target.classList.contains('btn--edit')){
-        console.log('güncelleme');
+        kisiSil(silinicekTr,silinecekMail)
+    } else if(event.target.classList.contains('btn--edit')){
+       document.querySelector('.kaydetGuncelle').value = 'Guncelle'
+       const secilenTr = event.target.parentElement.parentElement;
+       const guncellenecekMail = secilenTr.cells[2].textContent;
+
+       ad.value =secilenTr.cells[0].textContent;
+       soyad.value =secilenTr.cells[1].textContent;
+       mail.value =secilenTr.cells[2].textContent;
+
+       secilenSatir = secilenTr;
+       console.log(tumKisilerDizisi);
     }
+
 }
-function rehberdenSil(silinicekTrElementi,silinecekMail){
+function kisiSil(silinicekTrElementi,silinecekMail){
     silinicekTrElementi.remove();
 
     // maile göre silme işlemi
@@ -38,25 +49,51 @@ function rehberdenSil(silinicekTrElementi,silinecekMail){
     tumKisilerDizisi.length = 0;
     tumKisilerDizisi.push(...silinmeyecekKisiler); 
 
+    alanlariTemizle();
+    document.querySelector('.kaydetGuncelle').value ='Kaydet'
+
 }
 
 
 function kaydet(e) {
     e.preventDefault();
 
-    const eklenecekKisi = {
+    const eklenecekveyaGuncellenecekKisi = {
         ad: ad.value,
         soyad: soyad.value,
         mail: mail.value
 
     }
-    const sonuc = verileriKontrolEt(eklenecekKisi)
+    const sonuc = verileriKontrolEt(eklenecekveyaGuncellenecekKisi)
     if (sonuc.durum) {
-        kisiyiEkle(eklenecekKisi);
+        if(secilenSatir){
+      
+            kisiyiGuncelle(eklenecekveyaGuncellenecekKisi)
+        }else{
+            kisiyiEkle(eklenecekveyaGuncellenecekKisi);
+        }
+      
     } else {
         bilgiOlustur(sonuc.mesaj, sonuc.durum)
 
     }
+}
+function kisiyiGuncelle(kisi){
+
+    for(let i = 0 ; i< tumKisilerDizisi.length; i++){
+        if(tumKisilerDizisi[i].mail === secilenSatir.cells[2].textContent){
+            tumKisilerDizisi[i]= kisi;
+            break;
+        }
+    }
+
+    secilenSatir.cells[0].textContent = kisi.ad;
+    secilenSatir.cells[1].textContent = kisi.soyad;
+    secilenSatir.cells[2].textContent= kisi.mail;
+
+    document.querySelector('.kaydetGuncelle').value = ' KAYDET'
+    secilenSatir= undefined;
+    console.log(tumKisilerDizisi);
 }
 function kisiyiEkle(eklenecekKisi) {
     const olusturulanTrElementi = document.createElement('tr');
