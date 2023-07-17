@@ -9,8 +9,37 @@ const kisiListesi = document.querySelector('.kisi-listesi')
 
 //event listener
 form.addEventListener('submit', kaydet)
+kisiListesi.addEventListener('click', kisiIslemleriniYap)
 
 const tumKisilerDizisi = [];
+
+function kisiIslemleriniYap(event) {
+
+    if (event.target.classList.contains('btn--delete')) {
+        const silinicekTr = rehberdenSil(event.target.parentElement.parentElement);
+        const silinecekMail = event.target.parentElement.previousElementSibling.textContent;
+        rehberdenSil(silinicekTr,silinecekMail)
+    } else if(e.target.classList.contains('btn--edit')){
+        console.log('güncelleme');
+    }
+}
+function rehberdenSil(silinicekTrElementi,silinecekMail){
+    silinicekTrElementi.remove();
+
+    // maile göre silme işlemi
+    // tumKisilerDizisi.forEach((kisi,index)=>{
+    //     if(kisi.mail === silinecekMail){
+    //     tumKisilerDizisi.splice(index,1)}
+    // })
+
+    const silinmeyecekKisiler = tumKisilerDizisi.filter(function(kisi,index){
+        return kisi.mail !== silinecekMail;
+    })
+    tumKisilerDizisi.length = 0;
+    tumKisilerDizisi.push(...silinmeyecekKisiler); 
+
+}
+
 
 function kaydet(e) {
     e.preventDefault();
@@ -43,7 +72,7 @@ function kisiyiEkle(eklenecekKisi) {
     kisiListesi.appendChild(olusturulanTrElementi);
     tumKisilerDizisi.push(eklenecekKisi);
 
-    bilgiOlustur('Kişi rehbere kaydedildi',true)
+    bilgiOlustur('Kişi rehbere kaydedildi', true)
 }
 
 function verileriKontrolEt(kisi) {
